@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>Componente de mensagem</p>
+    <Message :msg="msg" v-show="msg"/>
   </div>
   <div>
     <form id="burger-form" @submit="createBurger">
@@ -26,7 +26,9 @@
       <div class="input-container">
         <label for="meat">Escolha a carne:</label>
         <select name="meat" id="meat" v-model="meat">
-          <option value="" disabled selected>Selecione a carne do seu burger</option>
+          <option value="" disabled selected>
+            Selecione a carne do seu burger
+          </option>
           <option v-for="meat in meats" :key="meat.id" :value="meat.tipo">
             {{ meat.tipo }}
           </option>
@@ -36,7 +38,12 @@
         <label id="optional-title" for="optional"
           >Selecione os opcionais:</label
         >
-        <div class="checkbox-container" v-for="optional in optionalsData" :key="optional.id" :value="optional.tipo">
+        <div
+          class="checkbox-container"
+          v-for="optional in optionalsData"
+          :key="optional.id"
+          :value="optional.tipo"
+        >
           <input
             type="checkbox"
             name="optional"
@@ -54,8 +61,14 @@
 </template>
 
 <script>
+import Message from "../components/Message.vue";
+
 export default {
   name: "BurgerForm",
+  components: {
+    Message
+  },
+
   data() {
     return {
       breads: null,
@@ -68,6 +81,7 @@ export default {
       msg: null,
     };
   },
+
   methods: {
     async getIngredients() {
       const req = await fetch("http://localhost:3000/ingredientes");
@@ -79,37 +93,38 @@ export default {
     },
 
     async createBurger(e) {
-
       e.preventDefault();
-      
+
       const data = {
         nome: this.name,
         carne: this.meat,
         pao: this.bread,
         opcionais: Array.from(this.optionals),
-        status: "Solicitado"
-      }
+        status: "Solicitado",
+      };
+
       const dataJson = JSON.stringify(data);
 
       const req = await fetch("http://localhost:3000/burgers", {
         method: "POST",
-        headers: { "Content-Type": "application/json" }, //Serve para indicar que o tipo do dado da requisicao eh um json.
-        body: dataJson
+        headers: { "Content-Type": "application/json" }, //Serve para indicar que o tipo do dado da requisicao é um json.
+        body: dataJson,
       });
 
       const res = await req.json(); //Resposta da requisicao (opcional)
 
-      // INSERIR UMA MSG PERSONALIZADA DO SISTEMA
+      this.msg = `Pedido Nº ${res.id} realizado com sucesso!`
+
+      setTimeout(() => this.msg = "", 3000);
 
       //Limpa os campos do formulario
       this.name = "";
       this.meat = "";
       this.bread = "";
       this.optionals = [];
-
-
-    }
+    },
   },
+
   mounted() {
     this.getIngredients();
   },
