@@ -26,6 +26,14 @@
         <div>
           <select name="status" class="status">
             <option value="" disabled selected>Selecione</option>
+            <option
+              v-for="stat in status"
+              :key="stat.id"
+              value="stat.tipo"
+              :selected="burger.status == stat.tipo"
+            >
+              {{ stat.tipo }}
+            </option>
           </select>
           <button class="delete-btn">Cancelar</button>
         </div>
@@ -55,8 +63,17 @@ export default {
 
       console.log(this.burgers);
 
-      // resgatar o status
+      this.getStatus();
     },
+
+    async getStatus() {
+
+      const req = await fetch("http://localhost:3000/status")
+
+      const data = await req.json();
+
+      this.status = data;
+    }
   },
 
   mounted() {
@@ -101,7 +118,7 @@ export default {
 }
 
 select {
-  padding: 12px 6px;
+  padding: 10px 5px;
   margin-right: 12px;
   margin-bottom: 12px;
 }
@@ -116,6 +133,7 @@ select {
   margin: 0 auto;
   cursor: pointer;
   transition: 0.5s;
+  border-radius: 5px;
 }
 
 .delete-btn:hover {
