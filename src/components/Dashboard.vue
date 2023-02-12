@@ -127,6 +127,7 @@ export default {
 <style scoped>
 #burger-table {
   max-width: 1200px;
+  min-height: 500px;
   margin: 0 auto;
 }
 

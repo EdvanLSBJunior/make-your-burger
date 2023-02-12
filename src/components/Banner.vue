@@ -1,6 +1,6 @@
 <template>
     <div id="main-banner">
-        <h1>Make your burguer</h1>
+        <h1>Make your burger</h1>
     </div>
 </template>
 
@@ -16,11 +16,9 @@ export default {
 
 #main-banner {
     background-image: url('../../public/img/burger.jpg');
-    /* background-position: 0 -250px; */
-    background-position: center;
+    background-position: 0 -550px;
     background-repeat: no-repeat;
-    background-size: cover;
-    height: 500px;
+    height: 400px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
