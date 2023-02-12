@@ -9,7 +9,7 @@ https://make-your-burger.netlify.app/
 make-your-burger é uma aplicação SPA web construída atraves de um projeto de aprendizado de Vue.Js do canal *Hora de Codar*
 as aulas são gratuitas e estão diponíveis no link: https://www.youtube.com/watch?v=wsAQQioPIJs&list=PLnDvRpP8BnezDglaAvtWgQXzsOmXUuRHL&index=1&ab_channel=MatheusBattisti-HoradeCodar 
 
-A aplicação consiste em simular 2 ambientes, 1 tela para realizacao de pedidos (cliente) e uma outra tela que simula a tela do proprietario onde e possivel gerenciar os pedidos. 
+A aplicação consiste em simular 2 ambientes, 1 tela para realização de pedidos (cliente) e uma outra que simula a tela do proprietário onde e possível gerenciar os pedidos. 
 
 ## Layout Web
 ![Web 1](https://github.com/EdvanLSBJunior/assets/blob/main/Images(MYB)/Home.png)
